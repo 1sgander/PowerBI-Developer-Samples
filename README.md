@@ -1,11 +1,11 @@
 # App Owns Data samples
 
 Read this documentation to prepare your environment
-https://powerbi.microsoft.com/en-us/documentation/powerbi-developer-using-embed-token/
+https://docs.microsoft.com/en-us/power-bi/developer/embedding-content
 
 To see embedded report, dashboard and tile, you need to fill missing details in web.config.
 
-clientId - Id of AAD application registered as native app.
+clientId - Id of AAD application registered as NATIVE app.
 
 groupId - group or workspace Id in Power BI which contains reports, dashboards and tiles you want to embed.
 
@@ -16,6 +16,7 @@ pbiPassword - password of Power BI user above.
 ### Important
 
 For security reasons, in real application, don't save the user and password in web.config. Consider using KeyVault
+
 
 # User Owns Data samples
 
@@ -45,7 +46,7 @@ Registration Example:
 
 ![regexample](https://cloud.githubusercontent.com/assets/23071967/23340723/fc032efe-fc43-11e6-9a8f-13e40cb32d97.png)
 
-## Step 2 - Change Web.config
+## Step 2 - Change Cloud.config
 Copy Client Id and Client secret to web.config file
 
 ![regexample](https://cloud.githubusercontent.com/assets/23071967/23340740/48d4f640-fc44-11e6-8f31-dd273d26a61e.png)
@@ -70,4 +71,7 @@ Find line:
 </compilation>
 ```
 
+## Issues
+[Power BI Support Page](https://powerbi.microsoft.com/en-us/support/)
 
+[Power BI Ideas](https://ideas.powerbi.com)

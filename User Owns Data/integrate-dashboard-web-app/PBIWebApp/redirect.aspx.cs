@@ -22,21 +22,28 @@ namespace PBIWebApp
             string authorityUri = Properties.Settings.Default.AADAuthorityUri;
 
             // Get the auth code
-            string code = Request.Params.GetValues(0)[0];
+            string code = Request.Params["code"];
 
-            // Get auth token from auth code       
-            TokenCache TC = new TokenCache();
+            if (code != null)
+            {
+                // Get auth token from auth code       
+                TokenCache TC = new TokenCache();
 
-            AuthenticationContext AC = new AuthenticationContext(authorityUri, TC);
-            ClientCredential cc = new ClientCredential
-                (Properties.Settings.Default.ClientID,
-                Properties.Settings.Default.ClientSecret);
+                AuthenticationContext AC = new AuthenticationContext(authorityUri, TC);
+                ClientCredential cc = new ClientCredential
+                    (Properties.Settings.Default.ClientID,
+                    Properties.Settings.Default.ClientSecret);
 
-            AuthenticationResult AR = AC.AcquireTokenByAuthorizationCode(code, new Uri(redirectUri), cc);
+                AuthenticationResult AR = AC.AcquireTokenByAuthorizationCode(code, new Uri(redirectUri), cc);
 
-            //Set Session "authResult" index string to the AuthenticationResult
-            Session[_Default.authResultString] = AR;
-
+                //Set Session "authResult" index string to the AuthenticationResult
+                Session[_Default.authResultString] = AR;
+            }
+            else
+            {
+                //Remove Session "authResult"
+                Session[_Default.authResultString] = null;
+            }
             //Redirect back to Default.aspx
             Response.Redirect("/Default.aspx");
         }
